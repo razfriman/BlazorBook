@@ -1,0 +1,18 @@
+﻿<div class="blazor-book-item">
+    <div class="card">
+        <h5 class="card-header">@Type.Name</h5>
+        <div class="card-body">
+            <div class="blazor-book-item-container">
+                @{
+                    RenderFragment renderFragment = (builder) => { builder.OpenComponent(0, Type); builder.CloseComponent(); };
+                    @renderFragment
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Type Type { get; set; }
+}

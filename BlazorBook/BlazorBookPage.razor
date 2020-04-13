@@ -1,0 +1,35 @@
+﻿@namespace BlazorBook
+@using System.Reflection
+
+<div class="blazor-book-page">
+    @foreach (var type in types)
+    {
+        <BlazorBookItem Type="type"></BlazorBookItem>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public Assembly Assembly { get; set; }
+
+    private Type[] types;
+
+    protected override Task OnInitializedAsync()
+    {
+        types = GetBlazorBookTypes(Assembly).ToArray();
+        return base.OnInitializedAsync();
+    }
+
+
+    private static IEnumerable<Type> GetBlazorBookTypes(Assembly assembly)
+    {
+        foreach (Type type in assembly.GetTypes())
+        {
+            if (type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(BlazorBookBaseComponent)))
+            {
+                yield return type;
+            }
+        }
+    }
+}
