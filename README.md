@@ -12,6 +12,8 @@ Simply Add the `BlazorBookPage` component to whichever page you would like to en
 
 ## Screenshot
 
+![BlazorBook](https://user-images.githubusercontent.com/1769935/79098107-910edb80-7da4-11ea-8308-b3009c28577d.PNG)
+
 ## Contributions
 
 This is a very early prototype and any help would always be appreciated
