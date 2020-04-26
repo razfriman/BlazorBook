@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
-namespace BlazorBook.Sample
+namespace BlazorBook.Sample.Client
 {
     public class Program
     {

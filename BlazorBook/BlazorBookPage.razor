@@ -2,9 +2,9 @@
 @using System.Reflection
 
 <div class="blazor-book-page">
-    @foreach (var type in types)
+    @foreach (var type in _types)
     {
-        <BlazorBookItem Type="type"></BlazorBookItem>
+        <BlazorBookItem Type="@type"></BlazorBookItem>
     }
 </div>
 
@@ -13,23 +13,23 @@
     [Parameter]
     public Assembly Assembly { get; set; }
 
-    private Type[] types;
+    private Type[] _types;
 
     protected override Task OnInitializedAsync()
     {
-        types = GetBlazorBookTypes(Assembly).ToArray();
+        _types = GetBlazorBookTypes(Assembly).ToArray();
         return base.OnInitializedAsync();
     }
-
 
     private static IEnumerable<Type> GetBlazorBookTypes(Assembly assembly)
     {
         foreach (Type type in assembly.GetTypes())
         {
-            if (type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(BlazorBookBaseComponent)))
+            if (type.GetCustomAttributes(typeof(BlazorBookComponentAttribute), true).Length > 0)
             {
                 yield return type;
             }
         }
     }
+
 }

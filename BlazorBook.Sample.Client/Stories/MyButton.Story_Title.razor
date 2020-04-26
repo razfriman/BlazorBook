@@ -1,0 +1,9 @@
+@attribute [BlazorBookComponent("Buttons/button with title")]
+
+<input type="text" @bind="title" @bind:event="oninput"/>
+<MyButton Title=@title></MyButton>
+
+
+@code {
+    public string title = "Title with Binding";
+}
